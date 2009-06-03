@@ -1,6 +1,10 @@
-=== 1.0.0 / 2009-05-18
+=== 1.1 / ??
+
+* 1 minor enhancement
+ * Support pending balance.  Patch by Ben Bleything.
+
+=== 1.0 / 2009-05-18
 
 * 1 major enhancement
-
   * Birthday!
 

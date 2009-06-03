@@ -9,7 +9,7 @@ class OrcaCard
   ##
   # Version of OrcaCard you are using
 
-  VERSION = '1.0'
+  VERSION = '1.1'
 
   ##
   # OrcaCard Error class
@@ -110,12 +110,16 @@ class OrcaCard
     end
 
     balance = nil
+    pending_balance = nil
     active = nil
 
     card.root.xpath('//table/tbody/tr/td').each do |td|
       if element = td.xpath('.//strong[text()="Amount:"]').first then
         td.text =~ /\$([\d.]+)/
         balance = $1.to_f
+      elsif element = td.xpath('.//font[text()=" (Pending)"]').first then
+        td.text =~ /\$([\d.]+)/
+        pending_balance = $1.to_f
       elsif element = td.xpath('.//strong[text()="Status:"]').first then
         td.text =~ /Status: (.*)/
         active = $1.downcase
@@ -129,7 +133,10 @@ class OrcaCard
         card_id, passenger_type, vehicle_type
       ]
     end
-    puts "E-purse %s, balance $%0.2f" % [active, balance]
+
+    balance = "E-purse %s, balance $%0.2f" % [active, balance]
+    balance << " ($%0.2f pending)" % [pending_balance] if pending_balance
+    puts balance
     puts
 
     history = card.links_with(:text => 'View Transaction History').first.click
