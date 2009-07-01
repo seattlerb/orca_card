@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'mechanize'
+require 'optparse'
 
 ##
 # Prints out information about your {ORCA card}[http://orcacard.com].
