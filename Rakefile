@@ -6,7 +6,6 @@ $:.unshift 'lib'
 require 'orca_card'
 
 Hoe.new('orca_card', OrcaCard::VERSION) do |oc|
-  oc.rubyforge_name = 'seattlerb'
   oc.developer('Eric Hodel', 'drbrain@segment7.net')
 
   oc.extra_deps << ['mechanize', '~> 0.9']
